@@ -1,0 +1,27 @@
+{
+  "name": "capio-api",
+  "version": "1.0.0",
+  "description": "NodeJS backend for audio transcription service provided by Capio.ai Speech System",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zcaceres/capio-api.git"
+  },
+  "keywords": [
+    "machine",
+    "learning",
+    "audio",
+    "speech",
+    "recognition",
+    "nodejs"
+  ],
+  "author": "Zachary Caceres",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zcaceres/capio-api/issues"
+  },
+  "homepage": "https://github.com/zcaceres/capio-api#readme"
+}
