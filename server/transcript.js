@@ -9,10 +9,11 @@ const TEMP_JSON = {
 
 transcript.get('/:id', (req, res, next) => {
   // TODO: find model by ID, use ID to name file for transcription
-  res.sendStatus(200)
+  res.json(TEMP_JSON)
 })
 
 transcript.post('/', (req, res, next) => {
+
   // TODO: check for multipart headers, use multer to stream
 
   // Direct file stream
