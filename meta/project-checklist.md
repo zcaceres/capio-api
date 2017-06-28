@@ -20,6 +20,7 @@ To use Capio APIs, use API key “196502576af047df9864d3d05a05c785”
 API endpoint - ‘https://apidev.capio.ai/v1/speech/transcribe‘
 
 ## Components
+*Git* for Repo
 *PostgreSQL* for persisting transcriptions
 *Express* for HTTP routing
 *NodeJS* for media validation
