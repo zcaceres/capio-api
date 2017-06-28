@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/zcaceres/capio-api.png?label=ready&title=Ready)](https://waffle.io/zcaceres/capio-api?utm_source=badge)
 # Transcript Speech Recognition API with Capio
 > Zach Caceres
 
