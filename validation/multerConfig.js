@@ -1,3 +1,4 @@
+'use strict'
 const filterAudioFile = require('./filterAudio')
 const multer = require('multer')
 

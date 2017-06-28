@@ -1,3 +1,4 @@
+'use strict'
 const app = require('express')()
 const PORT_NUMBER = 8080
 

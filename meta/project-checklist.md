@@ -2,9 +2,9 @@
 
 ## Specs
 - POST api at /transcripts
-  - Accepts multipart POST requests with media files
+  - OK! Accepts multipart POST requests with media files
   - Transcribes using the Capio Sync API (https://capio.readme.io/docs/transcription-rest-api)
-  - Validate if uploaded file is media
+  - OK! Validate if uploaded file is media
   - Returns ONLY transcript text and the request ID, not the raw response
   - Results of each transcription request should be persisted (PostgreSQL) as request ID and text
 - GET api at /transcripts/:id
