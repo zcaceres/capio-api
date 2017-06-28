@@ -3,7 +3,6 @@ const fs = require('fs')
 const upload = require('../validation/multerConfig')
 
 const transcript = require('express').Router()
-const TRANSCRIPTION_ID = 1
 const TEMP_JSON = {
   id: 1,
   body: 'Heres a transcript'
