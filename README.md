@@ -29,11 +29,13 @@ You'll need [PostgreSQL](https://www.postgresql.org/download/) installed. On OSX
 
 Send a POST request with an audio file to: http://localhost:8080/transcript
 
-Your POST request needs the following parameters: {
+Your POST request needs the following parameters:
+```js
+{
   media: 'your_file_here',
   apiKey: 'your_api_key_here',
   async: true
-}
+}```
 
 A successful POST request will populate your database with JSON transcripts stored by transcriptIds. Here's how that looks in Postico:
 ![postico](./meta/postico.png)
