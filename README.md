@@ -54,21 +54,21 @@ You should receive a response like this:
 To run tests, ```npm test``` from the directory that contains package.json
 
 ## Challenges and Opportunities for Improvement
-I've left *TODOs* throughout the codebase to show things that I could have done better and opportunities to improve this code in a future push.
+I've left *TODOs* throughout the codebase to show things that I could have done better and opportunities to improve this code in  the future.
 
 Here are a few:
 
 *Testing:*
-- Finish the test suite with enough time to do complete coverage. Specifically, must test Sequelize models more closely and check detailed responses from Capio and PostGres beyond status code.
+- Finish the test suite with enough time to do complete coverage. Specifically, I must test Sequelize models more closely and check responses in detail from Capio and PostGres not just their status code.
 - Testing revealed a design flaw in how I handled the response from Capio. I should have sent the user some indication that the request was still processing. Then, after the transcript came back, I could send them the text.
-- capioManager should be tested
+- capioManager and validation needs testing
 
 *Validation and Cleanup:*
-- Validation uses a hacky approach to ensure audio files are sent to the server. Should check encoding rather than content header.
+- Validation uses a hacky approach to ensure only audio files are sent to the server. Should check encoding rather than content header.
 - No file cleanup is done after audio upload. This is not scalable at all.
 
 *Error Handling:*
-- There are many edge cases and potential areas for error that are not yet well handled
+- There are many edge cases and potential areas for error that are not yet well-handled
 - In the event of an error or timeout while pinging Capio api, this program should retry the transcription several times before moving on
 - Users could send binary files using x-www-form-urlencoded. These are not handled at all but could make it easier for developers to ping the API without encoding as multipart form data
 
@@ -76,4 +76,3 @@ Here are a few:
 - Transcript seems to occasionally cut off first or last words in each 'result' block. I'm not yet sure why.
 - The 'long.mp3' media sample has never successfully returned a transcript. I dont yet know why.
 - Refactoring to promisify response logic after POST request. Currently, the Express response is passed down through too many files and functions. This makes the flow hard to understand.
--
