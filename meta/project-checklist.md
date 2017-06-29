@@ -8,16 +8,12 @@
   - OK! Returns ONLY transcript text and the request ID, not the raw response
   - OK! Results of each transcription request should be persisted (PostgreSQL) as request ID and text
 - OK! GET api at /transcripts/:id
-  - Retrieve transcripts via ID
-- Fully tested endpoints
+  - OK! Retrieve transcripts via ID
+- OK! Fully tested endpoints
 - Readme
   - install dependencies
   - bootup server
   - run tests
-
-## Capio API
-To use Capio APIs, use API key '300aa92da5d547349d4836f66e957469'
-API endpoint - ‘https://apidev.capio.ai/v1/speech/transcribe‘
 
 ## Components
 *Git* for Repo
