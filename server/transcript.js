@@ -2,6 +2,7 @@
 const upload = require('../validation/multerConfig')
 const {getTranscript, checkIfAudioTranscribed} = require('../capio/capioManager')
 const transcript = require('express').Router()
+const Transcript = require('')
 
 // Set to match Capio API's mandatory 'media' field
 const SEND_FILE_FROM_THIS_FORM_FIELDNAME = 'media'
