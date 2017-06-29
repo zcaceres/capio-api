@@ -3,10 +3,10 @@ const request = require('request') // HTTP Manager
 const rp = require('request-promise-native') // Native Promises wrapper around request
 const fs = require('fs')
 const chalk = require('chalk')
-const CAPIO_API_POST_URL = 'http://apidev.capio.ai/v1/speech/transcribe'
-const CAPIO_API_GET_URL = 'http://apidev.capio.ai/v1/speech/transcript/'
-const CAPIO_TEMP_API_K = '300aa92da5d547349d4836f66e957469'
-const TIMEOUT_DURATON = 5000
+const CAPIO_TEMP_API_K = require('../utils/consts').CAPIO_TEMP_API_K
+const CAPIO_API_POST_URL = require('../utils/consts').CAPIO_API_POST_URL
+const CAPIO_API_GET_URL = require('../utils/consts').CAPIO_API_GET_URL
+const TIMEOUT_DURATON = require('../utils/consts').TIMEOUT_DURATON
 const createTranscript = require('../db').createTranscript
 
 function getTranscript(file) {

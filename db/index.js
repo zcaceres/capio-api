@@ -52,5 +52,9 @@ function createTranscript (transcriptId, transcriptBody, expressResponse) {
 }
 
 db.sync({force: false})
+.then(() => {
+  db.didSync = true
+})
+.catch(err => console.error(err))
 
 module.exports = {db, createTranscript, Transcript}

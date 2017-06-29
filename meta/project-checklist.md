@@ -24,7 +24,7 @@ API endpoint - ‘https://apidev.capio.ai/v1/speech/transcribe‘
 *PostgreSQL* for persisting transcriptions
 *Express* for HTTP routing
 *NodeJS* for media validation
-*Jasmine/Chai* for testing
+*Supertest/Mocha* for testing
 *Docker* for deployment
 
 If I have time:
