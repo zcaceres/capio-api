@@ -2,17 +2,18 @@
 const upload = require('../validation/multerConfig')
 const {getTranscript, checkIfAudioTranscribed} = require('../capio/capioManager')
 const transcript = require('express').Router()
+// const Transcript = require('../db').Transcript
+const Transcript = require('../db').Transcript
 
 // Set to match Capio API's mandatory 'media' field
 const SEND_FILE_FROM_THIS_FORM_FIELDNAME = 'media'
-const TEMP_JSON = {
-  id: 1,
-  body: 'Heres a transcript'
-}
 
 transcript.get('/:id', (req, res, next) => {
-  // TODO: find model by ID, use ID to name file for transcription
-  res.json(TEMP_JSON)
+  Transcript.findById(req.params.id)
+  .then(trans => {
+    res.json(trans.transcriptBody)
+  })
+  .catch(next)
 })
 
 // TODO: Edge case where file stream comes in as x-www-form-urlencoded
@@ -23,14 +24,7 @@ transcript.post('/', upload.single(SEND_FILE_FROM_THIS_FORM_FIELDNAME), (req, re
     const transcriptID = JSON.parse(capioResponseBody).transcriptID
     checkIfAudioTranscribed(transcriptID, res)
   })
-  .then(transcript => {
-    // res.json(transcript)
-  })
-  .catch(err => console.error(err))
-  // then delete file
-  // persist response in PG
-  // send response as JSON back to user
-
+  .catch(next)
 })
 
 module.exports = transcript

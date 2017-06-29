@@ -1,13 +1,13 @@
 # RESTFUL Backend for Capio Speech API
 
 ## Specs
-- POST api at /transcripts
+- OK! POST api at /transcripts
   - OK! Accepts multipart POST requests with media files
   - OK! Transcribes using the Capio Sync API (https://capio.readme.io/docs/transcription-rest-api)
   - OK! Validate if uploaded file is media
   - OK! Returns ONLY transcript text and the request ID, not the raw response
-  - Results of each transcription request should be persisted (PostgreSQL) as request ID and text
-- GET api at /transcripts/:id
+  - OK! Results of each transcription request should be persisted (PostgreSQL) as request ID and text
+- OK! GET api at /transcripts/:id
   - Retrieve transcripts via ID
 - Fully tested endpoints
 - Readme

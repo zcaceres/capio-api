@@ -1,6 +1,10 @@
 'use strict'
 const app = require('express')()
+const logger = require('morgan')
 const PORT_NUMBER = 8080
+const chalk = require('chalk')
+
+app.use(logger('dev'))
 
 /* Router for Transcript service */
 app.use('/transcript', require('./transcript'))
@@ -12,11 +16,9 @@ app.all('*', function(req, res, next) {
   next(err)
 })
 
-// TODO: Add middleware here
-
 /* Error Handling */
 app.use(function(err, req, res, next) {
-  console.error('ERROR IN EXPRESS HANDLER:', err.message)
+  console.error(chalk.red('ERROR IN EXPRESS HANDLER:', err.message))
   if (!err.statusCode) err.statusCode = 500 // Sets generic server error status code if none on 'err'
   res.status(err.statusCode).send(err.message)
 })
