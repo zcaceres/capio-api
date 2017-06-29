@@ -37,7 +37,7 @@ function checkIfAudioTranscribed(transcriptId, expressResponse) {
     }
 
     clearTimeout(currentTimeout) // Clean up previous timeout
-    
+
     if (res.statusCode === 202) {
       // Transcription still processing, ping again later
       currentTimeout = setTimeout(checkIfAudioTranscribed, TIMEOUT_DURATON, transcriptId, expressResponse)
