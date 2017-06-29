@@ -1,3 +1,4 @@
+'use strict'
 const FAKE_TRANSCRIPT = {
   transcriptId: '5954846142ccec0018960c1a',
   transcriptBody: [{"result":[{"alternative":[{"raw_transcript":"yes","confidence":1,"transcript":"Yes.","speaker":"S1","words":[{"to":0.8700000047683716,"confidence":1,"from":0.05999999865889549,"word":"Yes."}]}],"final":true}],"result_index":0}]

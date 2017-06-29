@@ -32,7 +32,7 @@ const Transcript = db.define('transcript', {
   },
   transcriptBody: {
     type: Sequelize.TEXT,
-    notNull: true,
+    allowNull: false,
     isAlphanumeric: true,
     get() {
       return this.getDataValue('transcriptBody')

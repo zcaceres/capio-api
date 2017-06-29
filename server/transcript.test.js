@@ -13,7 +13,6 @@ describe('Testing Transcript API', () => {
   after('Clear tables', () => db.truncate({ cascade: true }))
   let transcriptId
 
-
   // TODO: Test content of Capio response rather than status code
   describe('POST /transcript', () =>
       it('creates and sends a new transcript', () =>
