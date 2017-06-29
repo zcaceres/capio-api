@@ -52,7 +52,6 @@ function checkIfAudioTranscribed(transcriptId, expressResponse) {
       currentTimeout = setTimeout(checkIfAudioTranscribed, TIMEOUT_DURATON, transcriptId, expressResponse)
     } else if (res.statusCode === 200) {
       if (currentTimeout) clearTimeout(currentTimeout)
-      console.log('BODY:', body)
       createTranscript(transcriptId, body, expressResponse)
     } else {
       if (currentTimeout) clearTimeout(currentTimeout)

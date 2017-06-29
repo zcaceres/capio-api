@@ -1,6 +1,5 @@
 'use strict'
 const chalk = require('chalk')
-const path = require('path')
 // const Transcript = require('./transcript')
 const POSTGRES_USERNAME = 'zachcaceres' // 'your_name_here'
 const POSTGRES_PASSWORD = '' // 'your_password_here'
@@ -18,9 +17,10 @@ const db = new Sequelize(
   POSTGRES_PASSWORD,
   {
     'dialect': 'postgres',
-    'port': 5432
-  })
-// TODO: TURN OFF LOGGING HERE
+    'port': 5432,
+    logging: false
+  }
+)
 
 /* Transcript Model */
 const Transcript = db.define('transcript', {
@@ -40,8 +40,6 @@ const Transcript = db.define('transcript', {
   }
 })
 
-db.sync({force: false})
-
 function createTranscript (transcriptId, transcriptBody, expressResponse) {
   Transcript.create({
     transcriptId,
@@ -52,5 +50,7 @@ function createTranscript (transcriptId, transcriptBody, expressResponse) {
   })
   .catch(err => console.error(err))
 }
+
+db.sync({force: false})
 
 module.exports = {db, createTranscript, Transcript}

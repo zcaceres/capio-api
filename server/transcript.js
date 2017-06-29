@@ -24,14 +24,7 @@ transcript.post('/', upload.single(SEND_FILE_FROM_THIS_FORM_FIELDNAME), (req, re
     const transcriptID = JSON.parse(capioResponseBody).transcriptID
     checkIfAudioTranscribed(transcriptID, res)
   })
-  .then(transcript => {
-    // res.json(transcript)
-  })
   .catch(next)
-  // then delete file
-  // persist response in PG
-  // send response as JSON back to user
-
 })
 
 module.exports = transcript
