@@ -19,7 +19,7 @@ Built with *NodeJS* and:
 ## How To Use
 You'll need [PostgreSQL](https://www.postgresql.org/download/) installed. On OSX, I prefer the minimalist [Postgresapp](https://postgresapp.com/) and [Postico](https://eggerapps.at/postico/)
 
-1. By default, the the program looks for a database named 'capio-api'. You can either make an empty one with this name, or change the database name in CONFIG.js. 
+1. By default, this program looks for a database named 'capio-api'. You can either make an empty one with this name, or change the database name in CONFIG.js. 
 2. ```npm install``` dependencies using package.json
 3. Add your PostGres username and password to the CONFIG.js file
 4. Add your API key to the CONFIG.js file
