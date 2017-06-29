@@ -7,7 +7,6 @@ const CAPIO_API_POST_URL = 'http://apidev.capio.ai/v1/speech/transcribe'
 const CAPIO_API_GET_URL = 'http://apidev.capio.ai/v1/speech/transcript/'
 const CAPIO_TEMP_API_K = '300aa92da5d547349d4836f66e957469'
 const TIMEOUT_DURATON = 5000
-const Transcript = require('../db/transcript')
 const createTranscript = require('../db').createTranscript
 
 function getTranscript(file) {
