@@ -1,3 +1,4 @@
+'use strict'
 const request = require('supertest')
     , {expect} = require('chai')
     , db = require('../db').db
@@ -13,7 +14,8 @@ Default is 40 seconds to allow Capio time to respond with transcript */
 describe('Testing Transcript API', () => {
   before('Await db sync', () => db.didSync)
   after('Clear tables', () => db.truncate({ cascade: true }))
-  let transcriptId
+  let transcriptId // Stores newly created transcript from POST for use in GET
+  // Better practice would be to avoid any dependencies between these two tests!
 
   describe('POST /transcript', () =>
       it('creates and sends a new transcript', () =>
@@ -25,7 +27,6 @@ describe('Testing Transcript API', () => {
           .field('async', 'true')
           .attach('media', path.resolve(__dirname, '../media-samples/yes.mp3'))
           .then((response) => {
-            console.log('BODY', response.body)
             transcriptId = response.body.transcriptId
             expect(response.res.statusCode).to.equal(200)
           })

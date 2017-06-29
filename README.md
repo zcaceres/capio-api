@@ -4,6 +4,8 @@
 
 Badges and deployment link here
 
+CONFIG INSTRUCTIONS HERE
+
 ## Overview
 Components and stack here
 linter info here

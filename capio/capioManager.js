@@ -3,11 +3,9 @@ const request = require('request') // HTTP Manager
 const rp = require('request-promise-native') // Native Promises wrapper around request
 const fs = require('fs')
 const chalk = require('chalk')
-const CAPIO_TEMP_API_K = require('../utils/consts').CAPIO_TEMP_API_K
-const CAPIO_API_POST_URL = require('../utils/consts').CAPIO_API_POST_URL
-const CAPIO_API_GET_URL = require('../utils/consts').CAPIO_API_GET_URL
-const TIMEOUT_DURATON = require('../utils/consts').TIMEOUT_DURATON
-const createTranscript = require('../db').createTranscript
+const {CAPIO_TEMP_API_K, CAPIO_API_POST_URL, CAPIO_API_GET_URL} = require('../CONFIG')
+const {TIMEOUT_DURATON} = require('../utils/consts')
+const {createTranscript} = require('../db')
 
 function getTranscript(file) {
   const POST_REQUEST_CONFIG = {

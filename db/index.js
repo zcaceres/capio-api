@@ -1,8 +1,8 @@
 'use strict'
 const chalk = require('chalk')
+const {POSTGRES_USERNAME, POSTGRES_PASSWORD} = require('../CONFIG')
 // const Transcript = require('./transcript')
-const POSTGRES_USERNAME = 'zachcaceres' // 'your_name_here'
-const POSTGRES_PASSWORD = '' // 'your_password_here'
+
 
 // TODO: Get config settings for development or production here
 
@@ -32,7 +32,7 @@ const Transcript = db.define('transcript', {
   },
   transcriptBody: {
     type: Sequelize.TEXT,
-    allowNull: false, // A quirk in Sequelize makes .TEXT allow null if notNull validator is used 
+    allowNull: false, // A quirk in Sequelize makes .TEXT allow null if notNull validator is used
     isAlphanumeric: true,
     get() {
       return this.getDataValue('transcriptBody')
