@@ -3,62 +3,60 @@ const request = require('request') // HTTP Manager
 const rp = require('request-promise-native') // Native Promises wrapper around request
 const fs = require('fs')
 const chalk = require('chalk')
-const CAPIO_API_POST_URL = 'http://apidev.capio.ai/v1/speech/transcribe'
-const CAPIO_API_GET_URL = 'http://apidev.capio.ai/v1/speech/transcript/'
-const CAPIO_TEMP_API_K = '300aa92da5d547349d4836f66e957469'
-const TIMEOUT_DURATON = 5000
-const Transcript = require('../db/transcript')
-const createTranscript = require('../db').createTranscript
+const {
+  CAPIO_API_GET_URL,
+  POST_REQUEST_CONFIG,
+  GET_REQUEST_CONFIG
+} = require('../CONFIG')
+const {TIMEOUT_DURATON} = require('../utils/consts')
+const createTranscript = require('../db/createTranscript')
 
+/* POSTs audio data to Capio API. Returns a promise containing transcriptId */
 function getTranscript(file) {
-  const POST_REQUEST_CONFIG = {
-    url: CAPIO_API_POST_URL,
-    method: 'POST',
-    formData: {
-      apiKey: CAPIO_TEMP_API_K,
-      media: {
-        value: fs.createReadStream(file.path),
-        options: {
-          contentType: file.mimetype
-        }
-      },
-      async: 'true',
-      timeout: TIMEOUT_DURATON // Wait 5 seconds before timing out
-    }
-  }
-  // Returns a promise containing Capio transcriptID
+  prepPOSTRequest(file.path, file.mimetype)
   return rp(POST_REQUEST_CONFIG)
 }
 
+/*
+  Repeatedly pings Capio API w/transcript id to monitor status of transcription
+  If successful, pass transcript and Express response to DB
+
+  // TODO: Error handling if connection times out e.g. Capio never responds
+  // TODO: Refactor to promise-based syntax for readability
+  // TODO: Handle other errors (404, 500) in request callback
+*/
 function checkIfAudioTranscribed(transcriptId, expressResponse) {
-  let currentTimeout
+  let currentTimeout // Used to cleanup timeout each check. Should refactor this
   console.log(chalk.yellow('Pinging Capio to see if transcript is ready...'))
-  const GET_REQUEST_CONFIG = {
-    url: CAPIO_API_GET_URL + transcriptId,
-    method: 'GET',
-    headers: {
-      apiKey: CAPIO_TEMP_API_K
-    },
-    timeout: TIMEOUT_DURATON // Wait 5 seconds before timing out
-  }
-  // TODO: Handle different types of timeouts
+  prepGETRequest(transcriptId)
+
   request(GET_REQUEST_CONFIG, function(err, res, body) {
     if (err) {
       console.error(err)
       return
-      // TODO: WHAT DO WE DO WITH THIS IN TRANSCRIPT IF WE ERROR?
     }
-    if (res.statusCode === 202) {
+
+    clearTimeout(currentTimeout) // Clean up previous timeout
+
+    if (res.statusCode === 202) { // Transcription still processing, ping again later
       currentTimeout = setTimeout(checkIfAudioTranscribed, TIMEOUT_DURATON, transcriptId, expressResponse)
-    } else if (res.statusCode === 200) {
-      if (currentTimeout) clearTimeout(currentTimeout)
+    } else if (res.statusCode === 200) { // Transcription complete
       createTranscript(transcriptId, body, expressResponse)
     } else {
-      if (currentTimeout) clearTimeout(currentTimeout)
-      // TODO: another response, send along error to Express
       return res.statusMessage
     }
   })
+}
+
+// Helper function to set file parameters onto POST request
+function prepPOSTRequest(filePath, mimetype) {
+  POST_REQUEST_CONFIG.formData.media.value = fs.createReadStream(filePath)
+  POST_REQUEST_CONFIG.formData.media.options.contentType = mimetype
+}
+
+// Helper function to set transcriptId parameters onto GET request
+function prepGETRequest(transcriptId) {
+  GET_REQUEST_CONFIG.url = CAPIO_API_GET_URL + transcriptId
 }
 
 module.exports = {

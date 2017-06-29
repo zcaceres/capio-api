@@ -1,9 +1,10 @@
 'use strict'
 const app = require('express')()
 const logger = require('morgan')
-const PORT_NUMBER = 8080
 const chalk = require('chalk')
+const {PORT_NUMBER} = require('../utils/consts')
 
+/* Logging middleware to monitor requests */
 app.use(logger('dev'))
 
 /* Router for Transcript service */
