@@ -35,8 +35,8 @@ Your POST request needs the following parameters:
   media: 'your_file_here',
   apiKey: 'your_api_key_here',
   async: true
-}```
-
+}
+```
 A successful POST request will populate your database with JSON transcripts stored by transcriptIds. Here's how that looks in Postico:
 ![postico](./meta/postico.png)
 
