@@ -1,6 +1,6 @@
 'use strict'
 const upload = require('../validation/multerConfig')
-const getTranscript = require('../capio/capioManager')
+const {getTranscript, checkIfAudioTranscribed} = require('../capio/capioManager')
 const transcript = require('express').Router()
 
 // Set to match Capio API's mandatory 'media' field
@@ -16,14 +16,17 @@ transcript.get('/:id', (req, res, next) => {
 })
 
 // TODO: Edge case where file stream comes in as x-www-form-urlencoded
-// let writeStream = fs.createWriteStream(`audio-to-transcribe/${TRANSCRIPTION_ID}.mp3`) // set name based on ID
-// req.pipe(writeStream)
-
-// TODO: ERROR HANDLING FOR INCORRECT FORM NAME, please use 'audio' for sending your POST
+// TODO: ERROR HANDLING FOR INCORRECT FORM NAME, please use 'media' for sending your POST
 transcript.post('/', upload.single(SEND_FILE_FROM_THIS_FORM_FIELDNAME), (req, res, next) => {
-  getTranscript(req.file, res)
-  console.log('FILE', req.file)
-  // then send to capio transcription service
+  getTranscript(req.file)
+  .then(capioResponseBody => {
+    const transcriptID = JSON.parse(capioResponseBody).transcriptID
+    checkIfAudioTranscribed(transcriptID, res)
+  })
+  .then(transcript => {
+    // res.json(transcript)
+  })
+  .catch(err => console.error(err))
   // then delete file
   // persist response in PG
   // send response as JSON back to user

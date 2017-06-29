@@ -5,7 +5,7 @@
   - OK! Accepts multipart POST requests with media files
   - OK! Transcribes using the Capio Sync API (https://capio.readme.io/docs/transcription-rest-api)
   - OK! Validate if uploaded file is media
-  - Returns ONLY transcript text and the request ID, not the raw response
+  - OK! Returns ONLY transcript text and the request ID, not the raw response
   - Results of each transcription request should be persisted (PostgreSQL) as request ID and text
 - GET api at /transcripts/:id
   - Retrieve transcripts via ID
@@ -16,7 +16,7 @@
   - run tests
 
 ## Capio API
-To use Capio APIs, use API key “196502576af047df9864d3d05a05c785”
+To use Capio APIs, use API key '300aa92da5d547349d4836f66e957469'
 API endpoint - ‘https://apidev.capio.ai/v1/speech/transcribe‘
 
 ## Components
