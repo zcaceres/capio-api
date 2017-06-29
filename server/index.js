@@ -1,3 +1,4 @@
+'use strict'
 const app = require('express')()
 const PORT_NUMBER = 8080
 
@@ -15,7 +16,7 @@ app.all('*', function(req, res, next) {
 
 /* Error Handling */
 app.use(function(err, req, res, next) {
-  console.error('ERROR:', err.message)
+  console.error('ERROR IN EXPRESS HANDLER:', err.message)
   if (!err.statusCode) err.statusCode = 500 // Sets generic server error status code if none on 'err'
   res.status(err.statusCode).send(err.message)
 })
