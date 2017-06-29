@@ -17,7 +17,7 @@ Built with *NodeJS* and:
 - *Supertest/Mocha* for testing
 
 ## How To Use
-You'll need [PostgreSQL](https://www.postgresql.org/download/) installed.
+You'll need [PostgreSQL](https://www.postgresql.org/download/) installed. On OSX, I prefer the minimalist [Postgresapp](https://postgresapp.com/) and [Postico](https://eggerapps.at/postico/)
 
 1. ```npm install``` dependencies using package.json
 2. Add your PostGres username and password to the CONFIG.js file
@@ -52,6 +52,9 @@ You should receive a response like this:
 
 ## Unit Tests
 To run tests, ```npm test``` from the directory that contains package.json
+
+## Linter/Style
+Written with ESLint and a no semi-colon extension of [this config](https://www.npmjs.com/package/eslint-config-fullstack)
 
 ## Challenges and Opportunities for Improvement
 I've left *TODOs* throughout the codebase to show things that I could have done better and opportunities to improve this code in  the future.
