@@ -35,7 +35,8 @@ Your POST request needs the following parameters: {
   async: true
 }
 
-See the Postman photo below for an example.
+A successful POST request will populate your database with JSON transcripts stored by transcriptIds. Here's how that looks in Postico:
+![postico](./meta/postico.png)
 
 **To Retrieve a Transcription:**
 
