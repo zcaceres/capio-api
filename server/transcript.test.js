@@ -8,12 +8,13 @@ const request = require('supertest')
 
 /* global describe it before afterEach */
 
+/* Check package.json to edit timeout parameter in Mocha.
+Default is 40 seconds to allow Capio time to respond with transcript */
 describe('Testing Transcript API', () => {
   before('Await db sync', () => db.didSync)
   after('Clear tables', () => db.truncate({ cascade: true }))
   let transcriptId
 
-  // TODO: Test content of Capio response rather than status code
   describe('POST /transcript', () =>
       it('creates and sends a new transcript', () =>
         request(app)
@@ -29,8 +30,8 @@ describe('Testing Transcript API', () => {
             expect(response.res.statusCode).to.equal(200)
           })
       ))
+      // TODO: Test content of Capio response rather than status code
 
-  // TODO: Test content of DB response rather than status code
   describe('GET /transcript/:id', () =>
     describe('get file by id', () =>
       it('succeeds with a 200', () =>
@@ -38,4 +39,5 @@ describe('Testing Transcript API', () => {
           .get(`/transcript/${transcriptId}`)
           .expect(200)
       )))
+      // TODO: Test content of DB response rather than status code
 })

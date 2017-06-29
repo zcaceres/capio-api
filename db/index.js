@@ -32,7 +32,7 @@ const Transcript = db.define('transcript', {
   },
   transcriptBody: {
     type: Sequelize.TEXT,
-    allowNull: false,
+    allowNull: false, // A quirk in Sequelize makes .TEXT allow null if notNull validator is used 
     isAlphanumeric: true,
     get() {
       return this.getDataValue('transcriptBody')

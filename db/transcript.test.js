@@ -20,7 +20,7 @@ describe('User', () => {
           })
         )
 
-    it.only('transcriptBody cannot be null', () =>
+    it('transcriptBody cannot be null', () =>
       Transcript.create({ transcriptId: '12asudhash1', transcriptBody: null })
         .then(transcript => {
           expect(transcript).not.to.be.ok
