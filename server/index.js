@@ -1,7 +1,10 @@
 'use strict'
 const app = require('express')()
+const logger = require('morgan')
 const PORT_NUMBER = 8080
 const chalk = require('chalk')
+
+app.use(logger('dev'))
 
 /* Router for Transcript service */
 app.use('/transcript', require('./transcript'))
@@ -12,8 +15,6 @@ app.all('*', function(req, res, next) {
   err.statusCode = 404
   next(err)
 })
-
-// TODO: Add middleware here
 
 /* Error Handling */
 app.use(function(err, req, res, next) {
