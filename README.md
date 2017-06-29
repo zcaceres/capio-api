@@ -43,7 +43,12 @@ A successful POST request will populate your database with JSON transcripts stor
 Send a GET request to /transcript with the transcription ID: http://localhost:8080/transcript/:transcriptionId
 
 ## Easy Testing with [Postman](https://www.getpostman.com/apps)
-This repo includes four sample audio files for easy testing. They are labeled according to the length of the audio.
+This repo includes four sample audio files and an incorrect file for easy testing. They are labeled according to the length of the audio.
+
+* medium.wav
+* short.mp3
+* long.mp3
+* invalid-mimetype.jpg
 
 For easy testing, consider using Postman like the following example:
 ![postman](./meta/Postman-request.png)
