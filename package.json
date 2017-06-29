@@ -1,7 +1,7 @@
 {
   "name": "capio-api",
   "version": "1.0.0",
-  "description": "NodeJS backend for audio transcription service provided by Capio.ai Speech System",
+  "description": "NodeJS backend for audio transcription service provided by Capio.ai Machine Learning Speech System",
   "main": "app.js",
   "scripts": {
     "test": "mocha --timeout 40000 validation/*.test.js server/*.test.js db/*.test.js capio/*.test.js",

@@ -4,6 +4,7 @@
 
 Badges and deployment link here
 
+Set up PG
 CONFIG INSTRUCTIONS HERE
 
 ## Overview

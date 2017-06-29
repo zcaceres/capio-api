@@ -3,7 +3,7 @@ const request = require('supertest')
     , {expect} = require('chai')
     , db = require('../db').db
     , app = require('./index')
-    , CAPIO_TEMP_API_K = require('../utils/consts').CAPIO_TEMP_API_K
+    , {CAPIO_TEMP_API_K} = require('../CONFIG')
     , path = require('path')
 
 

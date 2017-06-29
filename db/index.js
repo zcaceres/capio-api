@@ -1,26 +1,21 @@
 'use strict'
 const chalk = require('chalk')
-const {POSTGRES_USERNAME, POSTGRES_PASSWORD} = require('../CONFIG')
-// const Transcript = require('./transcript')
-
-
-// TODO: Get config settings for development or production here
-
+const {FORCE_DB_SYNC, POSTGRES_USERNAME, POSTGRES_PASSWORD} = require('../CONFIG')
 const Sequelize = require('sequelize')
 const connectionString = 'postgresql://localhost:5432/capio-api'
-
-console.log(chalk.yellow(`Opening database connection to ${connectionString}`))
 
 const db = new Sequelize(
   'capio-api',
   POSTGRES_USERNAME,
   POSTGRES_PASSWORD,
   {
-    'dialect': 'postgres',
-    'port': 5432,
+    dialect: 'postgres',
+    port: 5432,
     logging: false
   }
 )
+
+console.log(chalk.yellow(`Opening database connection to ${connectionString}`))
 
 /* Transcript Model */
 const Transcript = db.define('transcript', {
@@ -40,21 +35,11 @@ const Transcript = db.define('transcript', {
   }
 })
 
-function createTranscript (transcriptId, transcriptBody, expressResponse) {
-  Transcript.create({
-    transcriptId,
-    transcriptBody
-  })
-  .then(newTranscript => {
-    expressResponse.json(newTranscript) // Send user completed transcript
-  })
-  .catch(err => console.error(err))
-}
-
-db.sync({force: false})
+/* Sync DB, notify tests they can begin running with .didSync */
+db.sync({force: FORCE_DB_SYNC})
 .then(() => {
   db.didSync = true
 })
 .catch(err => console.error(err))
 
-module.exports = {db, createTranscript, Transcript}
+module.exports = {db, Transcript}
