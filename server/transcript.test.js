@@ -27,7 +27,7 @@ describe('Testing Transcript API', () => {
           .field('Content-Type', 'multipart/form-data')
           .field('apiKey', CAPIO_TEMP_API_K)
           .field('async', 'true')
-          .attach('media', path.resolve(__dirname, '../media-samples/yes.mp3'))
+          .attach('media', path.resolve(__dirname, '../media-samples/short.mp3'))
           .then((response) => {
             transcriptId = response.body.transcriptId
             expect(response.res.statusCode).to.equal(200)

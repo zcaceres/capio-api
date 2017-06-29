@@ -1,21 +1,20 @@
 [![Stories in Ready](https://badge.waffle.io/zcaceres/capio-api.png?label=ready&title=Ready)](https://waffle.io/zcaceres/capio-api?utm_source=badge)
-# Transcript Speech Recognition API with Capio
+# Easy Transcription with Capio's Speech Recognition API
 > Zach Caceres
 
-Set up PG
-CONFIG INSTRUCTIONS HERE
-
 ## Overview
-This program provides a simple RESTful API to create and retrieve transcripts of audio files using the Capio.ai Speech Recognition API.
+This program provides a simple RESTful API (/transcript) to create and retrieve transcripts of audio files using the Capio.ai Speech Recognition API.
+
+* Audio files are sent to the server and forwarded to Capio
+* Server polls Capio until transcription is complete
+* Transcripts are saved in a PostgreSQL database by transcriptId (assigned by Capio)
+* You can access any transcription by transcript-id after it's processed by Capio
 
 ### Stack
-Built with NodeJS and:
+Built with *NodeJS* and:
 - *Express* for routing
-- *PostgreSQL/Sequelize* for persisting transcriptions
+- *PostgreSQL/pg/Sequelize* for DB/persisting transcriptions
 - *Supertest/Mocha* for testing
-
-## Installation
-Config and dependencies here
 
 ## How To Use
 You'll need [PostgreSQL](https://www.postgresql.org/download/) installed.
@@ -27,6 +26,7 @@ You'll need [PostgreSQL](https://www.postgresql.org/download/) installed.
 5. ```npm start``` will launch your server
 
 **To Create a Transcription:**
+
 Send a POST request with an audio file to: http://localhost:8080/transcript
 
 Your POST request needs the following parameters: {
@@ -35,13 +35,16 @@ Your POST request needs the following parameters: {
   async: true
 }
 
-**To retrieve a persistent transcription**
+See the Postman photo below for an example.
+
+**To Retrieve a Transcription:**
+
 Send a GET request to /transcript with the transcription ID: http://localhost:8080/transcript/:transcriptionId
 
 ## Easy Testing with [Postman](https://www.getpostman.com/apps)
-This repo includes four sample audio files for easy testing. They are labeled according to the lengt of the audio.
+This repo includes four sample audio files for easy testing. They are labeled according to the length of the audio.
 
-For easy testing, consider using Postman like the following:
+For easy testing, consider using Postman like the following example:
 ![postman](./meta/Postman-request.png)
 
 You should receive a response like this:
@@ -58,6 +61,7 @@ Here are a few:
 *Testing:*
 - Finish the test suite with enough time to do complete coverage. Specifically, must test Sequelize models more closely and check detailed responses from Capio and PostGres beyond status code.
 - Testing revealed a design flaw in how I handled the response from Capio. I should have sent the user some indication that the request was still processing. Then, after the transcript came back, I could send them the text.
+- capioManager should be tested
 
 *Validation and Cleanup:*
 - Validation uses a hacky approach to ensure audio files are sent to the server. Should check encoding rather than content header.
