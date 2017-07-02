@@ -77,7 +77,7 @@ Here are a few:
 
 *Validation and Cleanup:*
 - Validation uses a hacky approach to ensure only audio files are sent to the server. Should check encoding rather than content header.
-- No file cleanup is done after audio upload. This is not scalable at all.
+- No file cleanup is done after audio upload. This is not scalable at all. I should have used Node streams for processing.
 
 *Error Handling:*
 - There are many edge cases and potential areas for error that are not yet well-handled
