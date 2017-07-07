@@ -2,9 +2,9 @@
 const {TIMEOUT_DURATON} = require('./utils/consts')
 
 /* Your configuration here! */
-const POSTGRES_USERNAME = 'zachcaceres' // 'your_name_here'
+const POSTGRES_USERNAME = '' // 'your_name_here'
 const POSTGRES_PASSWORD = '' // 'your_password_here'
-const CAPIO_TEMP_API_K = '300aa92da5d547349d4836f66e957469' // your_api_key_here
+const CAPIO_TEMP_API_K = '' // your_api_key_here
 const CAPIO_API_POST_URL = 'http://apidev.capio.ai/v1/speech/transcribe'
 const CAPIO_API_GET_URL = 'http://apidev.capio.ai/v1/speech/transcript/'
 
